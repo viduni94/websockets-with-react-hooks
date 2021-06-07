@@ -40,7 +40,7 @@
   ],
   "rules": {
     "prettier/prettier": 2,
-    "no-console": 2,
+    "no-console": 0,
     "max-len": [2, { "code": 100 }],
     "consistent-return": 0,
     "import/order": [2, {
@@ -101,6 +101,7 @@
         "html": "ignore",
         "exceptions": ["Label"]
     }],
+    "react-hooks/exhaustive-deps": 0,
     "jsx-a11y/control-has-associated-label": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/no-static-element-interactions": 0,

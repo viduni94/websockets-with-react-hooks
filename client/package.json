@@ -1,6 +1,6 @@
 {
-  "name": "react-quickstart",
-  "version": "0.1.0",
+  "name": "react-websockets-app-fe",
+  "version": "1.0.0",
   "scripts": {
     "start": "cross-env ESLINT_NO_DEV_ERRORS=true react-scripts start",
     "build": "react-scripts build",
@@ -15,8 +15,7 @@
     "stylelint": "stylelint **/*.scss",
     "stylelint:fix": "stylelint --fix **/*.scss",
     "prettier": "prettier --check './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "prettier:fix": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "postinstall": "husky install"
+    "prettier:fix": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +52,8 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "socket.io-client": "^4.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
@@ -70,11 +70,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^4.6.0",
     "eslint-plugin-unicorn": "^32.0.1",
-    "husky": "^6.0.0",
     "istanbul": "^0.4.5",
     "node-sass": "^6.0.0",
     "prettier": "^2.3.0",
-    "redux-devtools-extension": "^2.13.8",
     "sass-loader": "^11.1.1",
     "stylelint": "^13.7.2",
     "stylelint-config-css-modules": "^2.2.0",

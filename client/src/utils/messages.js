@@ -2,13 +2,12 @@
 
 export default {
   common: {
-    title: 'React Quickstart',
+    title: 'React WebSockets App with Hooks',
   },
   mainPage: {
-    getStarted:
-      'You can get started on your react project by modifying the files in the "/src" folder',
-    visitThe: 'Visit the ',
-    moreInfo: ' for more info.',
-    readme: 'Readme',
+    messagesEmitted: ' messages have been emitted',
+    emitMsgButtonText: 'Emit new message',
+    leaveRoomButtonText: 'Leave Room',
+    joinRoomButtonText: 'Join Room',
   },
 };

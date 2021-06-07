@@ -2,9 +2,9 @@
   "name": "websockets-app-be",
   "version": "1.0.0",
   "description": "An express app for Web sockets",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "keywords": [
     "expressjs",
@@ -13,6 +13,8 @@
   "author": "Viduni Wickramarachchi",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.1.2"
   }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import cx from 'classnames';
 import io from 'socket.io-client';
 import ReactLogo from '../../components/ReactLogo';
@@ -6,41 +6,46 @@ import messages from '../../utils/messages';
 import pageStyles from '../pages.module.scss';
 import styles from './home.module.scss';
 
-const socket = io('http://localhost:3011');
-
 const Home = () => {
   const [messageCount, setMessageCount] = useState(0);
   const [isInRoom, setIsInRoom] = useState(false);
+  const ws = useRef(null);
+
+  useEffect(() => {
+    ws.current = io('http://localhost:3011', { transports: ['websocket'] });
+    ws.current.on(console.log('Socket connection opened'));
+    return () => ws.current.disconnect();
+  }, []);
 
   useEffect(() => {
     if (isInRoom) {
       console.log('Joining room');
-      socket.emit('room', { room: 'test-room' });
+      ws.current.emit('room', { room: 'test-room' });
     }
 
     return () => {
       if (isInRoom) {
         console.log('Leaving room');
-        socket.emit('leave room', {
+        ws.current.emit('leave room', {
           room: 'test-room',
         });
       }
     };
-  });
+  }, [isInRoom]);
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
-    socket.on('receive message', _payload => {
+    ws.current.on('receive message', _payload => {
       setMessageCount(messageCount + 1);
       document.title = `${messageCount} new messages have been emitted`;
     });
-  }, []);
+  }, [messageCount]);
 
   const handleInRoom = () => (isInRoom ? setIsInRoom(false) : setIsInRoom(true));
 
   const handleNewMessage = () => {
     console.log('Emitting new message');
-    socket.emit('new message', {
+    ws.current.emit('new message', {
       room: 'test-room',
     });
     setMessageCount(messageCount + 1);
@@ -57,11 +62,11 @@ const Home = () => {
         </h1>
         <p>{messageCount + messages.mainPage.messagesEmitted}</p>
         {isInRoom && (
-          <button type="button" onClick={() => handleNewMessage()}>
+          <button type="button" className={styles.emitMsgButton} onClick={() => handleNewMessage()}>
             {messages.mainPage.emitMsgButtonText}
           </button>
         )}
-        <button type="button" onClick={() => handleInRoom()}>
+        <button type="button" className={styles.enterButton} onClick={() => handleInRoom()}>
           {isInRoom && messages.mainPage.leaveRoomButtonText}
           {!isInRoom && messages.mainPage.joinRoomButtonText}
         </button>
